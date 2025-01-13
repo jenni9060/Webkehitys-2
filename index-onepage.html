@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tapahtuma 2025</title>
+    <style>
+        body, h1, h2, p, ul, li, form, input, textarea, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            line-height: 1.6;
+			background: linear-gradient(to bottom, pink, white, white, white, pink);
+        }
+		
+		html {
+			scroll-padding-top: 50px;
+		}
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: pink;
+            padding: 10px 0;
+        }
+		
+		h2 {
+			margin-bottom: 20px;
+		}
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        nav ul li a:hover {
+            color: white;
+        }
+
+        section {
+            padding: 30px 20px;
+            text-align: center;
+            min-height: 30vh;
+        }
+
+        #intro {
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #intro h1 {
+            font-size: 40px;
+            margin: 20px 0;
+        }
+
+        #intro p {
+            margin-bottom: 10px;
+        }
+
+        #signUp form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #signUp form label,
+        #signUp form input {
+            width: 100%;
+            max-width: 33%;
+            margin-bottom: 10px;
+        }
+
+        #signUp form textarea {
+            width: 100%;
+            max-width: 33%;
+            margin-bottom: 10px;
+        }
+
+        #signUp form button {
+            margin-bottom: 10px;
+            margin-top: 20px;
+            width: 30%;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background: black;
+            color: white;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background: white;
+            color: black;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#intro">Mistä on kyse?</a></li>
+                <li><a href="#info">Tietoa</a></li>
+                <li><a href="#schedule">Ohjelma</a></li>
+                <li><a href="#speakers">Puhujat</a></li>
+                <li><a href="#signUp">Ilmoittaudu</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="intro">
+        <h1>Tervetuloa Vuoden Hienoimpaan Tapahtumaan!</h1>
+        <p>Liity ja tule mukaan 15.6.2025 Kokkolassa.</p>
+        <a href="#info" class="button">Lue lisää</a>
+    </section>
+
+    <section id="info">
+        <h2>Tietoa Tapahtumasta</h2>
+        <p>Astutko mielelläsi askeleen tulevaisuuteen?</p>
+		<p>Nyt sinulla on tilaisuus osallistua vuoden puhutuimpaan tapahtumaan, joka tuo yhteen alan huiput,</p>		
+		<p>visionäärit ja tulevaisuuden tekijät.</p>
+		<p>Päivä on täynnä innostavia puheenvuoroja, syvällisiä keskusteluja</p>
+		<p>ja ainutlaatuista verkostoitumista.</p>
+    </section>
+	
+	  <section id="speakers">
+        <h2>Puhujat</h2>
+        <ul>
+            <li>Pekka Pekkala</li>
+            <li>Sirpa Sirpalainen</li>
+            <li>Matti Mattilainen</li>
+        </ul>
+    </section>
+	
+    <section id="schedule">
+        <h2>Ohjelma</h2>
+        <ul>
+            <li>10:00 - Tapahtuman avaus</li>
+            <li>11:00 - Pekka kertoo tulevaisuuden positiivisista näkymistä</li>
+            <li>13:00 - Paneelikeskustelu (Sirpa ja Matti)</li>
+            <li>15:00 - Verkostoitumista</li>
+        </ul>
+    </section>
+
+    <section id="signUp">
+        <h2>Ilmoittaudu</h2>
+        <form>
+            <label for="name">Nimi:</label>
+            <input type="text" id="name" name="name">
+            
+            <label for="email">Sähköposti:</label>
+            <input type="email" id="email" name="email">
+            
+            <label for="message">Viesti:</label>
+            <textarea id="message" name="message"></textarea>
+            
+            <button type="submit">Lähetä</button>
+        </form>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.querySelector("form");
+            const thankYouMessage = document.createElement("p");
+            thankYouMessage.style.color = "green";
+            thankYouMessage.style.marginTop = "10px";
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                const nameInput = document.getElementById("name");
+                const name = nameInput.value.trim();
+
+                if (name) {
+                    thankYouMessage.textContent = `Kiitos ilmoittautumisesta, ${name}!`;
+                } else {
+                    thankYouMessage.textContent = "Kiitos ilmoittautumisesta!";
+                }
+
+                form.appendChild(thankYouMessage);
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>
