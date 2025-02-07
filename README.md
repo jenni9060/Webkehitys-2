@@ -9,4 +9,6 @@
 | 20.01.2025 | 3 | Toinen tehtävä  | Virtuaali boksin asentaminen ja ssh yhteydellä vs coden kautta yhdistäminen virtual boksiin  |
 | 27.01.2025 | 2 | Luento  | -  |
 | 27.01.2025 | 1 | Kolmas tehtävä  | Pilvi virtuaaliboksin käyttöönotto ja sen liittäminen vs codeen, sekä aiemmin tehtyjen verkkosivujen lisäys siihen boksiin  |
+| 6.2.2025 | 2 | Luento  | -  |
+| 6.2.2025 | 2 | 4. Tehtävä  | Azure static web apps palvelulla sivun käyttöönotto  |
 
