@@ -1,0 +1,130 @@
+        body, h1, h2, p, ul, li, form, input, textarea, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            line-height: 1.6;
+			background: linear-gradient(to bottom, pink, white, white, white, pink);
+        }
+		
+		html {
+			scroll-padding-top: 50px;
+		}
+
+        header {
+            top: 0;
+            width: 100%;
+            background: pink;
+            padding: 10px 0;
+        }
+		
+		h2 {
+			margin-bottom: 20px;
+		}
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        nav ul li a:hover {
+            color: white;
+        }
+
+        section {
+            padding: 30px 20px;
+            text-align: center;
+            min-height: 30vh;
+        }
+
+        #intro {
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+			
+        }
+
+        #intro h1 {
+            font-size: 40px;
+            margin: 20px 0;
+        }
+
+        #intro p {
+            margin-bottom: 10px;
+        }
+
+        #signUp form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #signUp form label,
+        #signUp form input {
+            width: 100%;
+            max-width: 33%;
+            margin-bottom: 10px;
+        }
+
+        #signUp form textarea {
+            width: 100%;
+            max-width: 33%;
+            margin-bottom: 10px;
+        }
+
+        #signUp form button {
+            margin-bottom: 10px;
+            margin-top: 20px;
+            width: 30%;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background: black;
+            color: white;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background: white;
+            color: black;
+            border: 1px solid black;
+        }
+		
+		@media (max-width: 600px) {
+			nav ul {
+				display: block;
+				text-align: center;
+			}
+
+			nav ul li {
+				display: block;
+				margin: 5px 0;
+			}
+
+			nav ul li a {
+				padding: 10px;
+			}
+			
+
+		}
