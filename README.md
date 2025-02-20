@@ -14,4 +14,5 @@
 | 13.2.2025 | 3 | Aikaisemman luennon kuuntelu ja node ja express tehtävän teko  |   |
 | 13.2.2025 | 2 | Luento  |   |
 | 13.2.2025 | 2 | Tehtävä  | sivun muuttaminen käyttämään reactia  |
+| 20.2.2025 | 2 | Tehtävä  | Tietokanta-tehtävän tekeminen  |
 
