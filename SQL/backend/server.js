@@ -1,11 +1,15 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
 
 const app = express();
 const port = 3000;
 
 // Käytetään JSON-middlewarea POST-datan käsittelyyn
 app.use(express.json());
+
+// Palvellaan staattiset tiedostot "public" -kansiosta
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Yhdistä SQLite-tietokantaan
 const db = new sqlite3.Database('./database.db', (err) => {
@@ -22,22 +26,27 @@ db.run(`CREATE TABLE IF NOT EXISTS users (
   name TEXT,
   age INTEGER,
   city TEXT,
-  email TEXT UNIQUE
+  color TEXT
 )`);
+
+// Hae HTML-sivu pääreitillä
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
 
 // Luo uusi käyttäjä (Create)
 app.post('/users', (req, res) => {
-  const { name, age, city, email } = req.body;
-  if (!name || !email || !age || !city) {
+  const { name, age, city, color } = req.body;
+  if (!name || !color || !age || !city) {
     return res.status(400).json({ error: 'Nimi ja sähköposti vaaditaan' });
   }
 
-  const query = `INSERT INTO users (name, age, city, email) VALUES (?, ?, ?, ?)`;
-  db.run(query, [name, age, city, email], function (err) {
+  const query = `INSERT INTO users (name, age, city, color) VALUES (?, ?, ?, ?)`;
+  db.run(query, [name, age, city, color], function (err) {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    res.status(201).json({ id: this.lastID, name, age, city, email });
+    res.status(201).json({ id: this.lastID, name, age, city, color });
   });
 });
 
@@ -53,15 +62,15 @@ app.get('/users', (req, res) => {
 
 // Päivitä käyttäjän tiedot (Update)
 app.put('/users/:id', (req, res) => {
-    const { name, age, city, email } = req.body;
+    const { name, age, city, color } = req.body;
     const { id } = req.params;
   
-    if (!name || !email || !age || !city) {
+    if (!name || !color || !age || !city) {
       return res.status(400).json({ error: 'Nimi ja sähköposti vaaditaan' });
     }
   
-    const query = `UPDATE users SET name = ?, age = ?, city = ?, email = ? WHERE id = ?`;
-    db.run(query, [name, age, city, email, id], function (err) {
+    const query = `UPDATE users SET name = ?, age = ?, city = ?, color = ? WHERE id = ?`;
+    db.run(query, [name, age, city, color, id], function (err) {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
