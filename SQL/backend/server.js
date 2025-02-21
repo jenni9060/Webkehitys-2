@@ -1,6 +1,7 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const cors = require("cors");
 
 const app = express();
 const port = 3000;
@@ -8,8 +9,11 @@ const port = 3000;
 // Käytetään JSON-middlewarea POST-datan käsittelyyn
 app.use(express.json());
 
+// Sallitaan CORS (React-frontendille)
+app.use(cors());
+
 // Palvellaan staattiset tiedostot "public" -kansiosta
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 // Yhdistä SQLite-tietokantaan
 const db = new sqlite3.Database('./database.db', (err) => {
@@ -38,7 +42,7 @@ app.get('/', (req, res) => {
 app.post('/users', (req, res) => {
   const { name, age, city, color } = req.body;
   if (!name || !color || !age || !city) {
-    return res.status(400).json({ error: 'Nimi ja sähköposti vaaditaan' });
+    return res.status(400).json({ error: 'Nimi, ikä, kaupunki ja lempiväri vaaditaan' });
   }
 
   const query = `INSERT INTO users (name, age, city, color) VALUES (?, ?, ?, ?)`;
