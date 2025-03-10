@@ -4,6 +4,7 @@
 ***"AurinkoArska on helppokäyttöinen verkkosivusto, jossa käyttäjät voivat tarkastella ajankohtaisia säätietoja paikkakunnan mukaan. Lisäksi käyttäjä voi rekisteröityä sivulle, jonka jälkeen kirjautuessaan sisään ohjelma näyttää käyttäjän asuinpaikkakunnan sään ja 7 vuorokauden sään ja lisäksi käyttäjä pystyy selata hakuhistoriaansa."***
 
 ---
+---
 ## Käyttäjätarinat
 **Käyttäjäpersoona 1: Eero Eläkeläinen**
  **Ikä:** 70
@@ -15,7 +16,7 @@
  **Haasteet:**
    * Ei halua tuhlata aikaansa monimutkaisiin kirjautumisprosesseihin
    * Etsii selkeää sivustoa, joka keskittyy ainoastaan sään näyttämiseen ilman monimutkaisuuksia
-
+---
 **Käyttäpersoona 2: Krista Kiireinen**
  **Ikä:** 38
  **Ammatti:** Projektipäällikkö kansainvälisessä yrityksessä
@@ -27,7 +28,7 @@
  **Haasteet:**
    * Monet sääohjelmat näyttävät liian paljon erilaisia säätietoja, joten halutun tiedon etsiminen saattaa viedä aikaa.
    * Etsii intuitiivista ja nopeaa käyttöliittymää, joka ei vaadi ylimääräistä vaivannäköä.
-
+---
 **Käyttäjäpersoona 3: Maija Perheinen**
  **Ikä:** 35
  **Ammatti:** Lähihoitaja, perhevapaalla tällä hetkellä
@@ -39,7 +40,7 @@
  **Haasteet:**
    * Kiireisenä äitinä hänellä ei ole aikaa monimutkaisille käyttöliittymille, vaan hän haluaa tietää sataako/tuuleeko ulkona ja paljonko on lämpöä tai pakkasta.
    * Sään tarkistaminen on osa hänen aamurutiiniaan perheen aamutoimien keskellä, jolloin sovelluksen täytyy olla nopea ja selkeä.
-
+---
 **Käyttäjäpersoona 4: Jere Jaksavainen**
  **Ikä:** 25
  **Ammatti:** Personal trainer ja opiskelija
@@ -52,6 +53,7 @@
    * Sään nopea vaihtelu tuo haasteita urheilusuunnitelmiin.
    * Ei kaipaa lisäominaisuuksia, vaan haluaa nopeasti vain olennaiset säätiedot yhdellä vilkaisulla, jotta voi esim todeta onko tänään ulko-, vai sisätreeni.
 
+---
 ---
 
 ## Käyttötapaukset ja käyttäjäpolut
@@ -75,6 +77,8 @@
  → Sivusto lähettää pyynnön sääpalvelun API:lle ja saa kaupungin säätiedot. 
  → Sivusto näyttää haetun kaupungin säätiedot näytöllä.
 
+---
+
 #### Viikon sääennusteen tarkistaminen
  **Käyttötapaus:**
  **Käyttäjä:** Kirjautunut käyttäjä 
@@ -91,6 +95,8 @@
  → Käyttäjä klikkaa "Hae sää" -painiketta. 
  → Sivusto näyttää kaupungin nykyisen sään. 
  → Sivusto hakee ja näyttää lisäksi 7 vuorokauden sääennusteen.
+
+---
 
 #### Rekisteröityminen kotipaikkasään ja hakuhistorian käyttöönottamiseksi
  **Käyttötapaus:**
@@ -109,6 +115,8 @@
  → Sivusto tarkistaa syötetyt tiedot ja tallentaa ne tietokantaan. 
  → Käyttäjä saa vahvistuksen onnistuneesta rekisteröitymisestä. 
  → Käyttäjä voi nyt kirjautua sisään ja käyttää lisäpalveluja.
+
+---
 
 #### Automaattisen kotipaikkasään näyttäminen kirjautumisen yhteydessä
  **Käyttötapaus:**
@@ -129,6 +137,8 @@
  → Sivusto hakee ja näyttää käyttäjän kotipaikkakunnan nykyisen säätilan. 
  → Sivusto näyttää myös kotipaikan 7 päivän sääennusteen käyttäjälle kirjautumisen jälkeen.
 
+---
+
 #### Hakuhistorian tarkastelu
  **Käyttötapaus:**
  **Käyttäjä:** Sisäänkirjautunut käyttäjä
@@ -145,4 +155,5 @@
  → Käyttäjä valitsee kaupungin listalta (esim. "Oulu"). 
  → Sivusto näyttää Oulun säätiedot kyseiseltä ajankohdalta.
 
+---
 ---
