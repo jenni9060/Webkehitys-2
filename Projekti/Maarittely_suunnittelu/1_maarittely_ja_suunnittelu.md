@@ -71,11 +71,11 @@
 
  **Käyttäjäpolku vierailevan käyttäjän polusta:**
  → Käyttäjä avaa AurinkoArska.fi-sivuston. 
- → Sivusto avautuu alkunäkymään, jossa on hakukenttä ja "Hae sää" -painike. 
+ → Sivusto avautuu alkunäkymään, jossa on hakukenttä ja "Hae sää" -painike. Lisäksi tämän päivän sää Helsingistä esimerkkinä 
  → Käyttäjä syöttää kaupungin nimen (esim. "Kokkola") hakukenttään. 
  → Käyttäjä klikkaa "Hae sää" -painiketta. 
  → Sivusto lähettää pyynnön sääpalvelun API:lle ja saa kaupungin säätiedot. 
- → Sivusto näyttää haetun kaupungin säätiedot näytöllä.
+ → Sivusto näyttää haetun kaupungin päivän säätiedot näytöllä.
 
 ---
 
@@ -157,3 +157,109 @@
 
 ---
 ---
+
+## Prototyypit
+https://www.figma.com/design/75lAFGO95BjyZhVz6PioZH/Untitled?node-id=0-1&t=ZAvARlCAtoqeRA4B-1
+
+* Katso kuvat "aurinkoarska_kirjautunut.jpg" ja aurinkoarska_vieraileva.jpg" 
+
+---
+---
+
+## Tietoarkkitehtuuri ja tekninen suunnittelu
+
+### Palvelin
+* Paikallinen virtuaalikone
+  * Käytän virtuaalikonetta, koska en halua joutua vahingossa maksamaan pilvipalvelun käytöstä (käytin azuressa jo sen ilmaisen kokeilun aiempaan tehtävään)
+* Käyttöjärjestelmänä Debian
+* PostgreSQL tietokantana, joka tallennetaan virtuaalikoneeseen.
+
+### Backend
+* Node.js ja Express.js REST API -päätepisteiden toteutukseen.
+* PostgreSQL:n yhteyden hallintaan käytetään node-postgres (pg) -kirjastoa.
+* WeatherAPI rajapintana säätietojen reaaliaikaiseen hakemiseen.
+
+### Frontend
+* React käyttöliittymän toteutukseen
+
+### Tietokanta
+* SQLite toimii tiedostopohjaisena tietokantana virtuaalikoneessa.
+
+***Käyttäjät-taulu:***
+>CREATE TABLE Users (
+>    id SERIAL PRIMARY KEY,
+>    email VARCHAR(255) UNIQUE NOT NULL,
+>    password VARCHAR(255) NOT NULL,
+>    home_location VARCHAR(255)
+>);
+
+***Hakuhistoria-taulu:***
+>CREATE TABLE SearchHistory (
+>    id SERIAL PRIMARY KEY,
+>    user_id INT NOT NULL,
+>    searched_city VARCHAR(255) NOT NULL,
+>    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
+>);
+
+
+***Kysely hakuhistorian hakemiseen käyttäjältä:***
+>SELECT s.searched_city 
+>FROM SearchHistory s 
+>JOIN Users u ON s.user_id = u.id 
+>WHERE u.id = $1;
+
+---
+---
+## Testaussuunnitelma
+***-Testit tehdään aikataulujen puitteissa ja jos aika meinaa loppua, ohjelman vakaaksi saaminen on ykkösprioriteetti, joten testejä tehdään silloin vain muutamia***
+### Staattinen testaus
+* Koodikatselmointi
+* Linttaus käyttäen ES-Lint
+* Käyttöliittymän manuaalinen testaus
+### Dynaaminen testaus
+* Yksikkötestien teko
+  * Käyttäjien tietojen validointi rekisteröintiprosessissa.
+  * Testaa, että säädatan haku WeatherAPI:lta palauttaa odotetun datan
+* Integraatiotestit
+  * Käyttäjän rekisteröityminen ja kirjautuminen
+  * Säädatan haku WeatherApista
+* End-to-end -testaus
+  * Sään hakeminen vierailijana:
+    * Simuloi vierailijan käyttäjäpolku:
+    * Käyttäjä avaa verkkosivun.
+    * Syöttää kaupungin nimen hakukenttään.
+    * Klikkaa "Hae sää" -painiketta.
+    * Varmista, että oikeat säätiedot näkyvät ruudulla.
+  * Käyttäjän rekisteröityminen:
+    * Simuloi uusi käyttäjä:
+    * Käyttäjä avaa "Rekisteröidy"-sivun.
+    * Täyttää sähköpostin, salasanan ja kotipaikkakunnan
+    * Klikkaa "Lähetä".
+    * Varmista, että rekisteröinti onnistuu ja käyttäjä ohjataan kirjautumissivulle.
+    * Varmista, että oikeat säätiedot näkyvät ruudulla.
+* Kuormitustestaus
+  * K6-työkalua käyttäen
+
+---
+---
+
+## Tärkeimmät prioriteetit toiminnallisuuksissa
+**Kaikkien suunniteltujen toiminnallisuuksien toteuttaminen voi viedä aikaa reilusti odotettua kauemmin, joten tähän listaan vaihehtoista suunnitelmaa. Jos aikaa hyvin jää, silloin toteutetaan kaikki lisätoiminnallisuudet**
+
+* Päivän säätietojen hakeminen paikkakunnan perusteella
+  * Henkilön tulee pystyä hakemaan paikkakunnan tämän päivän sää
+  * Sää esitetään yksinkertaisena taulukkona sivustolla
+* Rekisteröityminen ja kirjautuminen
+  * Käyttäjän tulee pystyä rekisteröityä ja kirjautua sivulle
+  * Käyttäjän tiedot tallennetaan tietokantaan
+  * Kuitenkin jos aikataulu tulee tiukaksi, voidaan kirjautumis ja rekisteröitymistoiminnot lisätä suoraan sivustolle, eikä painikkeiden ja uusien dialogien taakse
+* 7 päivän sää kirjautuneelle **(Lisätoiminnallisuus)**
+  * Jos tulee oikein kiire, voidaan 7 päivän sää jättää implementoimatta
+  * Jos aikaa on vain vähän, voidaan 7 päivän säätiedot lisätä sivulle vielä yksinkertaisemmin, kuin ulkoasumalleissa
+* Hakuhistorian hakeminen kirjautuneelle **(Lisätoiminnallisuus)**
+  * Jos tulee oikein kiire, voidaan hakuhistoria jättää implementoimatta
+  * Jos aikaa on vain vähän, voidaan hakuhistoria implementoida yksinkertaisemmin, kuin ulkoasumalleissa
+
+
+
+
