@@ -243,6 +243,16 @@ https://www.figma.com/design/75lAFGO95BjyZhVz6PioZH/Untitled?node-id=0-1&t=ZAvAR
 ---
 ---
 
+## Projektinhallinta
+* Projektissa käytetään Git-versionhallintajärjestelmää
+* Projektista pidetään aikataulukirjaa, johon merkitään työtunnit
+* Projektin vaiheissa seurataan tätä suunnitelmaa
+* Toteutuksissa seurataan Figmaan tehtyä prototyyppiä
+* Projektia tehdään jsäännöllisesti, jotta päästään haluttuun lopputulokseen
+
+---
+---
+
 ## Tärkeimmät prioriteetit toiminnallisuuksissa
 **Kaikkien suunniteltujen toiminnallisuuksien toteuttaminen voi viedä aikaa reilusti odotettua kauemmin, joten tähän listaan vaihehtoista suunnitelmaa. Jos aikaa hyvin jää, silloin toteutetaan kaikki lisätoiminnallisuudet**
 
