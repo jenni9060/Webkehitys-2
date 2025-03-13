@@ -171,7 +171,7 @@ https://www.figma.com/design/75lAFGO95BjyZhVz6PioZH/Untitled?node-id=0-1&t=ZAvAR
 ### Palvelin
 * Paikallinen virtuaalikone
   * Käytän virtuaalikonetta, koska en halua joutua vahingossa maksamaan pilvipalvelun käytöstä (käytin azuressa jo sen ilmaisen kokeilun aiempaan tehtävään)
-* Käyttöjärjestelmänä Debian
+* Virtuaalikoneen käyttöjärjestelmänä Debian
 * PostgreSQL tietokantana, joka tallennetaan virtuaalikoneeseen.
 
 ### Backend
