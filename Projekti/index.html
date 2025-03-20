@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AurinkoArska</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="images/aurinkoarska_logo.png" alt="AurinkoArska Logo" id="logo">
+        <nav>
+            <button id="login">Kirjaudu</button>
+            <button id="register">Rekisteröidy</button>
+        </nav>
+    </header>
+    <main>
+        <section id="welcome-text">
+            <p>Tervetuloa AurinkoArska.fi-sivustolle!</p>
+            <p>Syötä kaupungin nimi nähdäksesi ajankohtaiset säätiedot.</p>
+        </section>
+        <section id="search-input-section">
+                <input type="text" id="city" placeholder="Syötä kaupunki">
+        </section>
+        <section id="search-button-section">
+            <div id="history-button-container">
+            </div>
+            <div id="weather-button-container">
+                <button id="search_weather" class="weather_button">Hae sää</button>
+            </div>
+        </section>
+        <section id="weather-result">
+            <div id="weather-card">
+                <div id="date-container">
+                    <p id="date">20.03.2025</p>
+                </div>
+                <div id="weather-info">
+                    <p><strong>Paikkakunta:</strong> <span id="location-value">Helsinki</span></p>
+                    <p><strong>Lämpötila:</strong> <span id="temperature-value">4°C</span></p>
+                    <p><strong>Säätila:</strong> <span id="condition-value">Pilvistä</span></p>
+                    <p><strong>Tuuli:</strong> <span id="wind-value">4 m/s, koillistuuli</span></p>
+                    <p><strong>Ilmankosteus:</strong> <span id="humidity-value">42%</span></p>
+                </div>
+            </div>
+        </section>
+        <section id="info-text-login">
+            <p>Kirjaudu sisään tallentaaksesi hakuhistoriasi ja nähdäksesi 7 vuorokauden sää.</p>
+        </section>
+    </main>
+
+    <!-- Rekisteröidy dialogi -->
+<div id="register-dialog" class="dialog">
+    <div class="dialog-content">
+        <h2>Rekisteröidy</h2>
+        <form id="register-form" class="dialog-form">
+            <label for="email" class="labels">Sähköposti</label>
+            <input type="email" id="email" class="dialog-input" placeholder="Syötä sähköposti">
+            
+            <label for="password" class="labels">Salasana</label>
+            <input type="password" id="password" class="dialog-input" placeholder="Syötä salasana">
+            
+            <label for="location" class="labels">Paikkakunta</label>
+            <input type="text" id="location" class="dialog-input" placeholder="Syötä paikkakunta">
+            
+            <button type="submit" class="dialog-button">Rekisteröidy</button>
+        </form>
+        <div class="close-container">
+            <button id="close-register-dialog" class="close-button">Sulje</button>
+        </div>
+    </div>
+</div>
+
+   <!-- Kirjaudu dialogi -->
+   <div id="login-dialog" class="dialog">
+    <div class="dialog-content">
+        <h2>Kirjaudu</h2>
+        <form id="login-form" class="dialog-form">
+            <label for="email" class="labels">Sähköposti</label>
+            <input type="email" id="email" class="dialog-input" placeholder="Syötä sähköposti">
+            
+            <label for="password" class="labels">Salasana</label>
+            <input type="password" id="password" class="dialog-input" placeholder="Syötä salasana">
+            
+            <button type="submit" class="dialog-button">Kirjaudu sisään</button>
+        </form>
+        <div class="close-container">
+            <button id="close-login-dialog" class="close-button">Sulje</button>
+        </div>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

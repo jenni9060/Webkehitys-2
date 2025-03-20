@@ -1,0 +1,242 @@
+/* Perusasetukset */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #FEF4EA; /* Vaalea taustaväri */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #513E3E;
+    width: 100%; /* Header täyttää näytön leveyden */
+    margin: 0;
+    box-sizing: border-box;
+    height: 100px;
+}
+
+#logo {
+    max-width: 150px; /* Rajaa logon maksimi leveyden */
+    height: 100%; /* Venyy headerin korkeuteen */
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    margin-right: 10px;
+}
+
+nav button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    background-color: #F2D1B3;
+    border: 0.5px solid black;
+    cursor: pointer;
+    border-radius: 10px;
+    color: #000000;
+    font-weight: bold;
+}
+
+#search-input-section,
+#search-button-section,
+#weather-card {
+    width: 90%; /* Sama leveys kaikille */
+    max-width: 800px; /* Sama maksimi leveys */
+    margin: 20px auto; /* Keskitetään samoin kaikille */
+    box-sizing: border-box; /* Varmistetaan johdonmukainen laskenta */
+}
+
+#search-input-section {
+    display: flex;
+    justify-content: center; /* Keskittää input-containerin */
+    background-color: #ffffff;
+}
+
+#search-input-section input {
+    display: block; /* Estää inputia käyttäytymästä inline-elementtinä */
+    width: 100%; /* Täyttää containerin koko leveyden */
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-style: italic;
+    box-sizing: border-box; /* Sisällyttää padding ja border leveyslaskentaan */
+    background: url('images/search.png') no-repeat left 10px center; /* Lisää suurennuslasi kuvakkeena */
+    background-size: 20px; /* Skaalaa kuvake oikeaan kokoon */
+}
+
+#search-input-section input::placeholder {
+    font-style: italic; /* Tekee placeholder-tekstistä kursivoidun */
+    text-align: right; /* Asettaa placeholder-tekstin oikeaan reunaan */
+}
+
+#search-button-section {
+    display: flex;
+    justify-content: flex-end; /* Kohdistaa painikkeen oikealle */
+  
+}
+
+.weather_button {
+    padding: 10px 15px;
+    background-color: #DCF764;
+    border: 0.5px solid black;
+    cursor: pointer;
+    border-radius: 10px;
+    color: #000000;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#weather-card {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Kevyt varjo */
+}
+
+#date-container {
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    text-align: left; /* Kohdistaa tekstin vasemmalle */
+}
+
+#date {
+    font-weight: bold;
+    color: #333;
+}
+
+#weather-info p {
+    margin: 8px 0;
+    font-size: 17px;
+    color: #444;
+}
+
+#info-text-login {
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+    color: #333;
+    font-size: 14px;
+}
+
+#welcome-text {
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+    font-weight: bold;
+    color: #333;
+    font-size: 20px;
+}
+
+
+/* Responsiivisuus */
+
+@media (max-width: 768px) {
+    #weather-button-container {
+        max-width: 90%; /* Käytetään enemmän tilaa pienillä näytöillä */
+    }
+
+    #search-input-section input {
+        padding: 8px;
+    }
+
+    .weather_button {
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    #weather-button-container {
+        max-width: 100%;
+    }
+
+    #search-input-section input {
+        width: 100%;
+    }
+}
+
+
+/*Tyyliluokat muotoilemaan Rekisteröidy ja Kirjaudu dialogeja*/
+
+.dialog {
+    display: none; /* Aluksi piilotettu */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Tumma taustakerros */
+    z-index: 1000; /* Näkyy kaiken muun päällä */
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-content {
+    background-color: #F8EBD8; /* Vaalea ruskea tausta lomakkeelle */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Kevyt varjo */
+    width: 90%; /* Responsiivinen leveys */
+    max-width: 400px; /* Rajoitettu leveys suuremmilla näytöillä */
+    align-items: center;
+}
+
+.dialog-content h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.dialog-form {
+    display: flex;
+    flex-direction: column; /* Asettaa elementit pystysuoraan */
+    gap: 15px; /* Väli jokaisen kentän väliin */
+}
+
+.labels {
+    font-weight: bold; /* Tekee kentän nimet selkeämmiksi */
+}
+
+.dialog-input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%; /* Varmistaa, että kenttä täyttää lomakkeen leveyden */
+    box-sizing: border-box;
+}
+
+.dialog-button {
+    background-color: #DCF764;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+    width: 70%;
+    align-self: center; /* Asettaa painikkeen keskelle */
+    border: 1px solid #ccc
+}
+
+.close-container {
+    display: flex;
+    justify-content: center; /* Keskittää napin vaakasuunnassa */
+    margin-top: 15px; /* Sopiva väli lomakkeen ja napin välillä */
+}
+
+.close-button {
+    background-color: #F2D1B3;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 30%; /* Nappia ei tarvitse venyttää liikaa */
+    border: 1px solid #ccc;
+}
