@@ -18,6 +18,12 @@ header {
     height: 100px;
 }
 
+header p {
+    font-size: 20px;
+    font-style: italic;
+    color: #F6823C;
+}
+
 #logo {
     max-width: 150px; /* Rajaa logon maksimi leveyden */
     height: 100%; /* Venyy headerin korkeuteen */
