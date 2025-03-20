@@ -16,8 +16,7 @@
 | 13.2.2025 | 2 | Tehtävä  | sivun muuttaminen käyttämään reactia  |
 | 20.2.2025 | 2 | Tehtävä  | Tietokanta-tehtävän tekeminen  |
 | 03.03.2025 | 4 | Luento + tehtävä  | testaustehtävä  |
-
-| PROJEKTI | - | - | - |
+| PROJEKTI | PROJEKTI |  PROJEKTI | PROJEKTI  |
 | 10.03.2025 | 6 | Projekti | Luento + projektin suunnittelun aloitus  |
 | 20.03.2025 | 5 | Projekti | Sivuston ulkoasun koodaaminen  |
 
