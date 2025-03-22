@@ -38,13 +38,15 @@
                 <div id="weather-info">
                     <p><strong>Paikkakunta:</strong> <span id="location-value">Helsinki</span></p>
                     <hr>
-                    <p><strong>Lämpötila:</strong> <span id="temperature-value">4°C</span></p>
+                    <p><strong>Päivän alin lämpötila:</strong> <span id="max-temperature-value"></span></p>
                     <hr>
-                    <p><strong>Säätila:</strong> <span id="condition-value">Pilvistä</span></p>
+                    <p><strong>Päivän ylin lämpötila:</strong> <span id="min-temperature-value"></span></p>
                     <hr>
-                    <p><strong>Tuuli:</strong> <span id="wind-value">4 m/s, koillistuuli</span></p>
+                    <p><strong>Sademäärä:</strong> <span id="rain-value"></span></p>
                     <hr>
-                    <p><strong>Ilmankosteus:</strong> <span id="humidity-value">42%</span></p>
+                    <p><strong>Tuulen nopeus:</strong> <span id="wind-value"></span></p>
+                    <hr>
+                    <p><strong>Päivän valon kesto:</strong> <span id="daylight-value"></span></p>
                     <hr>
                 </div>
             </div>
@@ -94,7 +96,9 @@
         </div>
     </div>
 </div>
-
-    <script src="script.js"></script>
+<div id="weather">
+    <p>Haetaan säätietoja...</p>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
