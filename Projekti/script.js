@@ -18,6 +18,9 @@ document.getElementById("close-login-dialog").addEventListener("click", function
 	document.getElementById("login-dialog").style.display = "none";
 });
 
+// Hae päivämäärä
+const date = new Date().toLocaleDateString();
+document.getElementById('date').textContent = date;
 
 // Open-Meteo API-pyynnön parametrit
 const latitude = 60.1699; // Korvaa halutulla leveysasteella (esim. Helsinki)
@@ -36,7 +39,7 @@ fetch(apiUrl)
 		const cityInput = document.getElementById('city');
 
 		// Kun käyttäjä painaa "Hae sää" -nappia
-		searchButton.addEventListener('click', () => {
+		searchButton.addEventListener('click', async () => {
 			const city = cityInput.value.trim();
 
 			if (!city) {
@@ -44,15 +47,8 @@ fetch(apiUrl)
 				return;
 			}
 
-			// Tässä tulisi olla kaupungin sijaintitietojen (koordinaatit) haku. Tämä on yksinkertaistettu esimerkki:
-			let latitude = 60.1699; // Oletuksena Helsinki
-			let longitude = 24.9384;
+			const { latitude, longitude } = await getCordinates(city);
 
-			// Esimerkki kiinteiden koordinaattien käytöstä. Voit korvata nämä dynaamisesti.
-			if (city.toLowerCase() === 'rovaniemi') {
-				latitude = 66.5039;
-				longitude = 25.7294;
-			}
 
 			const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,rain_sum,wind_speed_10m_max,sunset,daylight_duration&timezone=auto`;
 
@@ -84,3 +80,18 @@ fetch(apiUrl)
 		console.error('Virhe API:n hakemisessa:', error);
 	});
 
+	function getCordinates(city) {
+		const geocodeApiUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(city)}&format=json&addressdetails=1&limit=1`;
+		return fetch(geocodeApiUrl)
+		.then(response => response.json())
+		.then(data => {
+			if (data.length > 0) {
+				
+				console.log('data ', data);
+					const { lat, lon } = data[0];
+					return { latitude: lat, longitude: lon };
+				} else {
+					throw new Error('Paikkakuntaa ei löytynyt.');
+				}
+			});
+	}
