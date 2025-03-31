@@ -19,6 +19,8 @@
 | PROJEKTI | PROJEKTI |  PROJEKTI | PROJEKTI  |
 | 10.03.2025 | 6 | Projekti | Luento + projektin suunnittelun aloitus  |
 | 20.03.2025 | 5 | Projekti | Sivuston ulkoasun koodaaminen  |
+| 25.03.2025 | 3 | Projekti | Sivun muutos käyttämään reactia  |
+| 31.03.2025 | 5 | Projekti | Sivun muutos käyttämään reactia  |
 
 
 
