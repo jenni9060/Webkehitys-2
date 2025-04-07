@@ -8,8 +8,31 @@ function Register({ onClose }) {
     const [location, setLocation] = useState('');
     const [message, setMessage] = useState('');
 
+      // Haetaan koordinaatit paikkakunnalle (Tarkistetaan, että paikkakunta löytyy)
+      const getCoordinates = async (city) => {
+        const geocodeApiUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(city)}&format=json&addressdetails=1&limit=1`;
+        try {
+            const response = await fetch(geocodeApiUrl);
+            const data = await response.json();
+            if (data.length > 0) {
+                return { latitude: data[0].lat, longitude: data[0].lon };
+            }
+            return null; // Palauta null, jos koordinaatteja ei löydy
+        } catch (error) {
+            console.error('Virhe koordinaattien hakemisessa:', error);
+            return null;
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault(); // Estetään lomakkeen oletustoiminto
+
+        // Tarkistetaan, onko syötetty paikkakunta validi
+        const coordinates = await getCoordinates(location);
+        if (!coordinates) {
+            setMessage(`Virheellinen paikkakunta: ${location}. Tarkista syöttö.`);
+            return; // Lopetetaan rekisteröintiprosessi
+        }
 
         const userData = {
             email,
