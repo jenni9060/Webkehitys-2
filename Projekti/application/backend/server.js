@@ -82,7 +82,7 @@ app.post('/login', async (req, res) => {
         // Tarkista, löytyykö käyttäjä tietokannasta
         const userResult = await pool.query('SELECT * FROM Users WHERE email = $1', [email]);
         if (userResult.rows.length === 0) {
-            return res.status(404).json({ error: 'Käyttäjää ei löytynyt tällä sähköpostilla.' });
+            return res.status(401).json({ error: 'Virheellinen käyttäjätunnus, tai salasana.' });
         }
 
         const user = userResult.rows[0];
@@ -91,7 +91,7 @@ app.post('/login', async (req, res) => {
         // Tarkista salasana
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
         if (!isPasswordCorrect) {
-            return res.status(400).json({ error: 'Virheellinen salasana.' });
+            return res.status(401).json({ error: 'Virheellinen käyttäjätunnus, tai salasana.' });
         }
 
         // Generoidaan token
@@ -100,8 +100,7 @@ app.post('/login', async (req, res) => {
         return res.status(200).json({
             message: 'Kirjautuminen onnistui!',
             user: {
-                email: user.email,
-                home_location: user.home_location,
+                location: user.home_location,
                 token: token,
             },
         });

@@ -43,22 +43,21 @@ function App() {
 	// Tapahtumankäsittelijä onnistuneeseen kirjautumiseen
 	const handleLoginSuccess = (user) => {
 		console.log('user data ', user);
-		localStorage.setItem('token', user.token); // Tallenna token selaimeen
+		sessionStorage.setItem('token', user.token); // Tallenna token SessionStorageen
+		sessionStorage.setItem('location', user.location); // Tallenna kotipaikkakunta SessionStorageen
 		setUser(user); // Tallenna käyttäjän tiedot Reactin tilaan
 		console.log('user data set ', user);
-		// Kutsu säädatan hakemista käyttäjän kotipaikkakunnalle
-		fetchWeatherData(user.home_location);
+		fetchWeatherData(user.location); // Kutsu säädatan hakemista käyttäjän kotipaikkakunnalle
 		CloseLoginDialog(); // Sulje kirjautumisdialogi
 	};
 
 	// Tapahtumankäsittelijä uloskirjautumiseen
 	const logoutHandler = () => {
-		console.log('Käyttäjä kirjautui ulos.');
-		localStorage.removeItem('token'); // Poista token selaimesta
+		sessionStorage.removeItem('token'); // Poista token SessionStoragesta
+		sessionStorage.removeItem('homeLocation'); // Poista kotipaikkakunta SessionStoragesta
 		setUser(null); // Nollaa käyttäjätila
 	};
 	
-
 
 	// Hae koordinaatit paikkakunnalle
 	const getCoordinates = async (city) => {
@@ -148,7 +147,17 @@ function App() {
 
 	// Hae oletuskaupunki Helsinki automaattisesti
 	useEffect(() => {
-		fetchWeatherData(city); // Hae sää oletuskaupungille
+		console.log('Sovellus käynnistyy.');
+    
+		const token = sessionStorage.getItem('token'); // Hae token SessionStoragesta
+		const homeLocation = sessionStorage.getItem('location'); // Hae kotipaikkakunta SessionStoragesta
+		
+		if (token && homeLocation) {
+			setUser({ token, location: homeLocation }); // Palauta käyttäjätila
+			fetchWeatherData(homeLocation); // Hae säätiedot käyttäjän kotipaikkakunnalle
+		} else {
+			fetchWeatherData(city); // Hae sää oletuskaupungille
+		}
 	}, []); // Tyhjä dependency array -> suoritetaan vain kerran
 
 	const showFooter = !user; // Näytä footer vain, jos käyttäjä ei ole kirjautunut
@@ -161,9 +170,11 @@ function App() {
 				user={user} 
 				onLogoutClick={logoutHandler} 
 			/>
-			<Search searchCity={searchCity}
-				setSearchCity={setSearchCity}
-				onSearch={() => fetchWeatherData(searchCity)} />
+			<Search
+				searchCity={searchCity}
+				setSearchCity={setSearchCity} // Päivitetään hakukentän tila
+				onSearch={() => fetchWeatherData(searchCity)} // Haetaan säätiedot "Hae sää" -painikkeen painalluksella
+			/>
 			<Weather data={weatherData} city={city} isWeekly={!!user?.token} />
 			{showFooter && <Footer />}
 			{isRegisterOpen && <Register onClose={CloseRegisterDialog} />}
