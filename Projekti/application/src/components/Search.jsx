@@ -18,10 +18,8 @@ function Search({ searchCity, setSearchCity, onSearch, user }) {
             });
             const data = await response.json();
             if (response.ok) {
-                // Suodata uniikit paikkakunnat tässä
-                console.log('data ', data);
+                // Suodata uniikit paikkakunnat
                 const uniqueCities = [...new Set(data.map(item => item.searched_city))];
-                console.log('uniqueCities ', uniqueCities);
                 setSearchHistory(uniqueCities); // Tallenna vain uniikit kaupungit tilaan
                 setShowHistory(true); // Näytä hakuhistoria
             } else {
@@ -35,7 +33,6 @@ function Search({ searchCity, setSearchCity, onSearch, user }) {
     const handleHistorySelection = (selectedCity) => {
         setShowHistory(false); // Sulje alasvetovalikko
         setSearchCity(selectedCity); // Aseta valittu kaupunki hakukenttään
-        console.log('search city ', selectedCity)
         onSearch(selectedCity); // Käynnistä haku valitulle kaupungille
     };
 

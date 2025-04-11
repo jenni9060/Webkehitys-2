@@ -27,7 +27,6 @@ const authenticate = (req, res, next) => {
 
 app.post('/register', async (req, res) => {
     const { email, password, homeLocation } = req.body;
-    console.log('Rekisteröitymisdata:', req.body); // Tulostaa käyttäjän syöttämät tiedot
 
     // Validoinnit ennen tietokantakyselyitä
     if (!email || !password) {
@@ -46,20 +45,17 @@ app.post('/register', async (req, res) => {
 
     try {
         const userCheck = await pool.query('SELECT * FROM Users WHERE email = $1', [email]);
-        console.log('Käyttäjän tarkistus:', userCheck.rows);
 
         if (userCheck.rows.length > 0) {
             return res.status(400).json({ error: 'Sähköpostiosoite on jo käytössä!' });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        console.log('Salattu salasana:', hashedPassword);
 
         const newUser = await pool.query(
             'INSERT INTO Users (email, password, home_location) VALUES ($1, $2, $3) RETURNING *',
             [email, hashedPassword, homeLocation]
         );
-        console.log('Uusi käyttäjä:', newUser.rows);
 
         res.status(201).json({ message: 'Käyttäjä luotu onnistuneesti!', user: newUser.rows[0] });
     } catch (err) {
@@ -71,7 +67,6 @@ app.post('/register', async (req, res) => {
 
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
-    console.log('Kirjautumistiedot:', req.body); // Tulostaa käyttäjän syöttämät tiedot
 
     // Validoinnit ennen tietokantakyselyitä
     if (!email || !password) {
@@ -86,7 +81,6 @@ app.post('/login', async (req, res) => {
         }
 
         const user = userResult.rows[0];
-        console.log('Löydetty käyttäjä:', user);
 
         // Tarkista salasana
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
@@ -124,7 +118,6 @@ app.get('/weather', authenticate, async (req, res) => {
 
     // Tarkista, onko käyttäjä kirjautunut
     if (req.user) {
-        console.log('Kirjautunut käyttäjä:', req.user);
         // Hae kotipaikkakunta kirjautuneen käyttäjän tiedoista, jos se on määritetty
         const userResult = await pool.query('SELECT home_location FROM Users WHERE email = $1', [req.user.email]);
         const homeLocation = userResult.rows[0]?.home_location;
@@ -133,7 +126,6 @@ app.get('/weather', authenticate, async (req, res) => {
             location = homeLocation; // Käytetään kotipaikkakuntaa
         }
     }
-    console.log('Paikkakunta:', location); // Tulostaa käytetyn paikkakunnan
     if (!location) {
         return res.status(400).json({ error: 'Kaupunkia ei annettu.' });
     }
@@ -154,7 +146,6 @@ app.get('/weather', authenticate, async (req, res) => {
 
 app.post('/search', authenticate, async (req, res) => {
     const { searched_city } = req.body; // Haetaan haettu kaupunki pyynnön rungosta
-    console.log('Hakukaupungin tiedot:', req.body);
 
     if (!req.user) {
         return res.status(401).json({ error: 'Käyttäjän autentikointi epäonnistui.' });
@@ -162,7 +153,6 @@ app.post('/search', authenticate, async (req, res) => {
 
     try {
         const userId = req.user.id; // Kirjautuneen käyttäjän ID tokenista
-        console.log('Käyttäjän ID:', userId);
 
         // Tallennetaan hakutiedot tietokantaan
         await pool.query(

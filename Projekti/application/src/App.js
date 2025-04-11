@@ -42,7 +42,6 @@ function App() {
 
 	// Tapahtumankäsittelijä onnistuneeseen kirjautumiseen
 	const handleLoginSuccess = (user) => {
-		console.log('user data ', user);
 		sessionStorage.setItem('token', user.token); // Tallenna token SessionStorageen
 		console.log('user token ', user.token);
 		sessionStorage.setItem('location', user.location); // Tallenna kotipaikkakunta SessionStorageen
@@ -55,7 +54,7 @@ function App() {
 	// Tapahtumankäsittelijä uloskirjautumiseen
 	const logoutHandler = () => {
 		sessionStorage.removeItem('token'); // Poista token SessionStoragesta
-		sessionStorage.removeItem('homeLocation'); // Poista kotipaikkakunta SessionStoragesta
+		sessionStorage.removeItem('location'); // Poista kotipaikkakunta SessionStoragesta
 		setUser(null); // Nollaa käyttäjätila
 	};
 	
@@ -110,7 +109,6 @@ function App() {
 	// Hae säätiedot paikkakunnan koordinaattien perusteella
 	const fetchWeatherData = async (searchCity) => {
 		let cityToSearch = searchCity || city; // Käytetään käyttäjän syöttämää paikkakuntaa tai oletuskaupunkia
-		console.log('city to search ', cityToSearch);
 		try {
 			// Käytä getCoordinates hakeaksesi koordinaatit
 			const coordinates = await getCoordinates(cityToSearch);
@@ -132,7 +130,6 @@ function App() {
 			const data = await response.json();
 
 			const formattedData = formatWeatherData(data.daily);
-			console.log('formatted data ', formattedData); // Tulostaa konsoliin muotoillut säätiedot
 
 			// Päivitä kaupunki ja säädata tilaan
 			setCity(cityToSearch);
@@ -149,7 +146,6 @@ function App() {
 					},
 					body: JSON.stringify({ searched_city: cityToSearch }),
 				});
-				console.log('Hakutieto tallennettu!');
 			}
 		} catch (error) {
 			console.error('Virhe säädatan hakemisessa:', error);
