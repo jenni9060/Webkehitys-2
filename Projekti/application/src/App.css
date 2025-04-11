@@ -51,6 +51,57 @@ nav button {
   text-align: right;
 }
 
+#history-button {
+  display: flex; /* Järjestää sisällön (kuva + teksti) vierekkäin */
+  align-items: center; /* Kohdistaa kuvan ja tekstin pystysuunnassa */
+  justify-content: center; /* Kohdistaa sisällön keskelle */
+  background-color: #F2D1B3; /* Vaalean beige taustaväri */
+  border: 1px solid #ccc; /* Kevyt reuna */
+  border-radius: 10px; /* Pyöristetyt kulmat */
+  padding: 10px 15px; /* tyhjä tila sisällön ympärille */
+  font-size: 16px; /* Fonttikoko tekstille */
+  font-weight: bold; /* Lihavoitu fontti */
+  cursor: pointer; /* Hiiren osoittimelle osoitin-ikoni */
+  transition: background-color 0.3s ease; /* Hover-efekti */
+  gap: 8px; /* Etäisyys kuvan ja tekstin välillä */
+  border: 0.5px solid black;
+}
+
+#history-button:hover {
+  background-color: #E9C6A8; /* Taustaväri hover-tilassa */
+}
+
+#history-button img {
+  width: 20px; /* Kuvan leveys */
+  height: 20px; /* Kuvan korkeus */
+}
+
+#history-dropdown {
+  position: absolute; /* Asettaa dropdownin painikkeen alle */
+  list-style: none; /* Poistaa listan pisteet */
+  margin-right: 100px;
+  margin-top: 43px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Kevyt varjo */
+  
+  z-index: 100; /* Näkyy pääelementtien päällä */
+}
+
+#history-dropdown li {
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#history-dropdown li:hover {
+  background-color: #f2f2f2; /* Hover-väri */
+}
+
+
+
 #search-input-section,
 #search-button-section,
 #weather-card {
@@ -91,13 +142,20 @@ nav button {
 
 .weather_button {
   padding: 10px 15px;
+  font-size: 16px;
   background-color: #DCF764;
   border: 0.5px solid black;
   cursor: pointer;
   border-radius: 10px;
   color: #000000;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease; /* Hover-efekti */
+}
+
+#weather-button-container {
+  display: flex; /* Järjestää painikkeet vierekkäin */
+  align-items: center; /* Kohdistaa painikkeet pystysuunnassa keskelle */
+  gap: 10px; /* Väli painikkeiden välillä */
 }
 
 #weather-card {

@@ -95,7 +95,14 @@ app.post('/login', async (req, res) => {
         }
 
         // Generoidaan token
-        const token = jwt.sign({ email: user.email }, SECRET_KEY, { expiresIn: '1h' });
+        const token = jwt.sign(
+            { 
+                id: user.id, // Käyttäjän ID lisätty mukaan
+                email: user.email // Käyttäjän sähköposti
+            }, 
+            SECRET_KEY, 
+            { expiresIn: '1h' } // Token vanhenee tunnin kuluttua
+        );
         // Palauta tiedot vastauksessa
         return res.status(200).json({
             message: 'Kirjautuminen onnistui!',
@@ -144,6 +151,51 @@ app.get('/weather', authenticate, async (req, res) => {
         res.status(500).json({ error: 'Virhe säädatan hakemisessa.' });
     }
 });
+
+app.post('/search', authenticate, async (req, res) => {
+    const { searched_city } = req.body; // Haetaan haettu kaupunki pyynnön rungosta
+    console.log('Hakukaupungin tiedot:', req.body);
+
+    if (!req.user) {
+        return res.status(401).json({ error: 'Käyttäjän autentikointi epäonnistui.' });
+    }
+
+    try {
+        const userId = req.user.id; // Kirjautuneen käyttäjän ID tokenista
+        console.log('Käyttäjän ID:', userId);
+
+        // Tallennetaan hakutiedot tietokantaan
+        await pool.query(
+            'INSERT INTO searchhistory (user_id, searched_city, search_date) VALUES ($1, $2, NOW()::DATE)',
+            [userId, searched_city] // Parametrit kyselyyn
+        );
+
+        res.status(201).json({ message: 'Hakutieto tallennettu.' }); // Vahvistus käyttäjälle
+    } catch (err) {
+        console.error('Virhe tallennettaessa hakutietoa:', err);
+        res.status(500).json({ error: 'Hakutietojen tallennuksessa tapahtui virhe.' });
+    }
+});
+
+app.get('/searchhistory', authenticate, async (req, res) => {
+    if (!req.user) {
+        return res.status(401).json({ error: 'Käyttäjän autentikointi epäonnistui.' });
+    }
+
+    try {
+        const userId = req.user.id;
+        const { rows } = await pool.query(
+            'SELECT searched_city, search_date FROM searchhistory WHERE user_id = $1 AND search_date > NOW() - INTERVAL \'30 days\' ORDER BY search_date DESC',
+            [userId]
+        );
+        res.status(200).json(rows); // Palautetaan hakuhistorian tulokset
+    } catch (err) {
+        console.error('Virhe hakuhistorian hakemisessa:', err);
+        res.status(500).json({ error: 'Hakuhistorian hakeminen epäonnistui.' });
+    }
+});
+
+
 
 
 const PORT = 5000;

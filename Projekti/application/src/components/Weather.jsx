@@ -2,7 +2,6 @@ function Weather({ data, city, isWeekly  }) {
     if (!data) {
         return;
     }
-    console.log('Säätiedot:', data); // Tulostaa konsoliin haetut säätiedot
 
 
 

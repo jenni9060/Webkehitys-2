@@ -22,7 +22,6 @@ function Login({ onClose, onLoginSuccess }) {
             const data = await response.json();
             if (response.status === 200) {
                 setMessage('Kirjautuminen onnistui!');
-                console.log('Kirjautumistiedot:', data.user); // Debug-tulostus
                 onLoginSuccess(data.user); // Tallenna käyttäjä ja sulje dialogi
                 setTimeout(() => {
                     onClose(); // Sulkee dialogin pienen viiveen jälkeen
