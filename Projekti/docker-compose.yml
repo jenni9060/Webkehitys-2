@@ -2,7 +2,7 @@ version: '3.9'
 services:
   backend:
     build:
-      context: ./server
+      context: ./application/server
     ports:
       - "5000:5000"
     environment:
@@ -10,20 +10,25 @@ services:
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
+      - DB_DATABASE=weather_app
     depends_on:
       - db
 
   frontend:
     build:
-      context: ./client
+      context: ./application/client
     ports:
       - "3000:80"
+    depends_on:
+      - backend
 
   db:
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: weather_app
     ports:
       - "5432:5432"
+    volumes:
+      - ./application/init.sql:/docker-entrypoint-initdb.d/init.sql
