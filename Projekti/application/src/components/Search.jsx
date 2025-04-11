@@ -80,7 +80,7 @@ function Search({ searchCity, setSearchCity, onSearch, user }) {
                         Hakuhistoria
                     </button>
                 )}
-                <button id="search_weather" className="weather_button" onClick={onSearch}>Hae sää</button>
+                <button id="search_weather" className="weather_button" onClick={() => onSearch(searchCity)}>Hae sää</button>
             </div>
                 {showHistory && (
                     <ul id="history-dropdown" ref={historyRef}>

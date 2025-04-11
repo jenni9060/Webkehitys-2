@@ -56,6 +56,9 @@ function App() {
 		sessionStorage.removeItem('token'); // Poista token SessionStoragesta
 		sessionStorage.removeItem('location'); // Poista kotipaikkakunta SessionStoragesta
 		setUser(null); // Nollaa käyttäjätila
+		setSearchCity(''); // Tyhjennä hakukenttä
+		setCity('Helsinki'); // Aseta oletuskaupungiksi Helsinki
+		fetchWeatherData('Helsinki'); // Hae Helsingin säädata
 	};
 	
 
