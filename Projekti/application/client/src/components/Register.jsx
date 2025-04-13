@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 
 function Register({ onClose }) {
-
+    const apiBaseUrl = 'http://192.168.100.120:5000';
+    const localhostUrl = 'http://localhost:5000';
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [location, setLocation] = useState('');
@@ -41,7 +42,7 @@ function Register({ onClose }) {
         };
 
         try {
-            const response = await fetch('http://localhost:5000/register', {
+            const response = await fetch(`${apiBaseUrl}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

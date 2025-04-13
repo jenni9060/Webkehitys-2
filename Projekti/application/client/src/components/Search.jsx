@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 function Search({ searchCity, setSearchCity, onSearch, user }) {
+    const apiBaseUrl = 'http://192.168.100.120:5000';
+    const localhostUrl = 'http://localhost:5000';
     const [searchHistory, setSearchHistory] = useState([]); // Tila hakuhistorialle
     const [showHistory, setShowHistory] = useState(false); // Tila dropdownille
     const historyRef = useRef(null); // Viittaus hakuhistoriaan
@@ -10,7 +12,7 @@ function Search({ searchCity, setSearchCity, onSearch, user }) {
    
         try {
             const token = sessionStorage.getItem('token'); // Hae käyttäjän token
-            const response = await fetch('http://localhost:5000/searchhistory', {
+            const response = await fetch(`${apiBaseUrl}/searchhistory`, {
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${token}`,

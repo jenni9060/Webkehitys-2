@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 
 function Login({ onClose, onLoginSuccess }) {
+    const apiBaseUrl = 'http://192.168.100.120:5000';
+    const localhostUrl = 'http://localhost:5000';
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -12,7 +14,7 @@ function Login({ onClose, onLoginSuccess }) {
         const loginData = { email, password };
 
         try {
-            const response = await fetch('http://localhost:5000/login', {
+            const response = await fetch(`${apiBaseUrl}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
