@@ -24,6 +24,8 @@
 | 3.04.2025 | 5 | Projekti |  Käyttäjän kirjautuminen |
 | 7.04.2025 | 6 | Projekti |  Käyttäjän uloskirjautuminen, 7 päivän sää, hakuhistoria, session ylläpito |
 | 11.04.2025 | 6 | Projekti |  hakuhistoria, docker ja virtuaalikoneeseen laittoa |
+| 13.04.2025 | 3 | Projekti |  Virtuaalikoneessa dockerin konfigurointia ja pientä viilausta porteissa ym |
+
 | 15.04.2025 | 3 | Projekti |  esitelmän tekoa |
 
 
