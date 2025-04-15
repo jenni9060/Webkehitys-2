@@ -22,8 +22,8 @@
 | 25.03.2025 | 3 | Projekti | Sivun muutos käyttämään reactia  |
 | 31.03.2025 | 5 | Projekti | Sivun muutos käyttämään reactia + käyttäjän rekisteröityminen  |
 | 3.04.2025 | 5 | Projekti |  Käyttäjän kirjautuminen |
-| 7.04.2025 | 5 | Projekti |  Käyttäjän uloskirjautuminen, 7 päivän sää, hakuhistoria, session ylläpito |
+| 7.04.2025 | 6 | Projekti |  Käyttäjän uloskirjautuminen, 7 päivän sää, hakuhistoria, session ylläpito |
 | 11.04.2025 | 6 | Projekti |  hakuhistoria, docker ja virtuaalikoneeseen laittoa |
-
+| 15.04.2025 | 3 | Projekti |  esitelmän tekoa |
 
 
