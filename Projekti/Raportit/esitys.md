@@ -22,14 +22,13 @@ Aihe projektille syntyi pallottelemalla eri sivustovaihtoehtoja. Sääsivusto ku
 
 | Käyttötapaus | Implementoitu (Kyllä/ei) | Demo / Muistiinpanot |
 |----------|----------------------|------------------------|
-| Sään hakeminen kaupunkia syöttämällä | Kyllä | Vieraileva ja kirjautunut käyttäjä voivat hakea säätietoja paikkakunnan perusteella.
-| Viikon sääennusteen tarkistaminen | Kyllä | Kirjautunut käyttäjä voi tarkastella 7 vuorokauden säätietoa. Vieraileva käyttäjä ei saanut nähdä, eikä myöskään näe viikon säätä |
-| Rekisteröityminen kotipaikkasään ja hakuhistorian käyttöönottamiseksi | Kyllä | Vieraileva käyttäjä voi rekisteröityä ja tämän jälkeen kirjautua ja tarkastella kotipaikkasäätään, sekä 30 vuorokauden hakuhistoriaansa |
-| Automaattisen kotipaikkasään näyttäminen kirjautumisen yhteydessä | Kyllä | Kirjautuessaan sivustolle käyttäjä näkee heti valitsemansa kotipaikkakuntansa säätiedot. Jos kotipaikkakunta on esim virheellisesti kirjoitettu, näytetään oletuskaupungin (Helsingin) säätiedot |
-| Hakuhistorian tarkastelu | Kyllä | Kirjautunut käyttäjä voi selata 30 vrk hakuhistoriaansa ja klikkaamalla paikkakuntaa hakuhistoriavalikosta, sivu hakee heti valitun paikkakunnan säätiedot |
-| Kirjautuneen käyttäjän uloskirjautuminen | Kyllä | Tätä ei käyttötapauksiin kirjattu, mutta toiminnallisuus toteutettiin silti ja käyttäjän on mahdollista uloskirjautua, jolloin sivusto palauttaa oletuspaikkakunnan vuorokausisään näkymän |
+| Sään hakeminen kaupunkia syöttämällä | Kyllä | Vieraileva ja kirjautunut käyttäjä voivat hakea säätietoja paikkakunnan perusteella. (Videon kohdassa 10.26)
+| Viikon sääennusteen tarkistaminen | Kyllä | Kirjautunut käyttäjä voi tarkastella 7 vuorokauden säätietoa. Vieraileva käyttäjä ei saanut nähdä, eikä myöskään näe viikon säätä (11.31)|
+| Rekisteröityminen kotipaikkasään ja hakuhistorian käyttöönottamiseksi | Kyllä | Vieraileva käyttäjä voi rekisteröityä ja tämän jälkeen kirjautua ja tarkastella kotipaikkasäätään, sekä 30 vuorokauden hakuhistoriaansa (10.57)|
+| Automaattisen kotipaikkasään näyttäminen kirjautumisen yhteydessä | Kyllä | Kirjautuessaan sivustolle käyttäjä näkee heti valitsemansa kotipaikkakuntansa säätiedot. Jos kotipaikkakunta on esim virheellisesti kirjoitettu, näytetään oletuskaupungin (Helsingin) säätiedot (11.31)|
+| Hakuhistorian tarkastelu | Kyllä | Kirjautunut käyttäjä voi selata 30 vrk hakuhistoriaansa ja klikkaamalla paikkakuntaa hakuhistoriavalikosta, sivu hakee heti valitun paikkakunnan säätiedot (12.26)|
+| Kirjautuneen käyttäjän uloskirjautuminen | Kyllä | Tätä ei käyttötapauksiin kirjattu, mutta toiminnallisuus toteutettiin silti ja käyttäjän on mahdollista uloskirjautua, jolloin sivusto palauttaa oletuspaikkakunnan vuorokausisään näkymän (12.41)|
 
-_Add explanations for each use case, including demo timestamps if using video._
 
 ---
 
@@ -95,7 +94,7 @@ Tulevaisuudessa muuttaisin ainakin sivuston ulkoasua sen verran, että käyttäi
 | 7.04.2025 | 6 | Käyttäjän uloskirjautuminen, 7 päivän sää, hakuhistoria, session ylläpito |
 | 11.04.2025 | 6 | hakuhistoria, docker ja virtuaalikoneeseen laittoa |
 | 15.04.2025 | 3 | esitelmän tekoa |
-| 19.04.2025 | 2 | esitelmän videon tekoa |
+| 18.04.2025 | 2 | esitelmän videon tekoa |
 | **Total**  | **41h** |                                 |
 
 ---
